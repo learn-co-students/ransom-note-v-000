@@ -2,7 +2,7 @@ function buildHistogram(magazine) {
   magazine = magazine.sort();
   let histogram = [];
   while (magazine.length > 0) {
-    let char = magazine.pop();
+    let char = magazine.slice(-1)[0];
     let firstInstance = magazine.indexOf(magazine.find(letter => letter == char))
     let magWithoutChar = magazine.slice(0, firstInstance)
     let charLength = magazine.length - magWithoutChar.length;
@@ -13,5 +13,18 @@ function buildHistogram(magazine) {
     histogram.unshift(object);
     magazine = magWithoutChar;
   }
-  return histogram
+  return histogram;
+}
+
+function canBuildNote(magazine, note) { 
+  debugger;
+  magazine = buildHistogram(magazine)
+  note = buildHistogram(note.split(''))
+  for (let i = 0; i < note.length; i++) {
+    let char = Object.keys(note[i])[0];
+    if (!(magazine[char] >= note[char])) {
+      return false
+    }
+  }
+  return true
 }
