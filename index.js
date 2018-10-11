@@ -28,6 +28,16 @@ function binaryMatch(mag) {
 //   return histogram
 // }
 
-function buildHistogram(mag){
+function canBuildNote(magazine, note){
+  let letterCount = binaryMatch(magazine)
+  for (let i = 0; i < note.length; i++) {
+    let letter = note[i]
+    if (letterCount[letter]) {
+      letterCount[letter] -= 1
+    } else {
+      return false
+    }
+  }
 
+  return true
 }
